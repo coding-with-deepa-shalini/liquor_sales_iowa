@@ -12,7 +12,7 @@ sm_bar = dbc.Row(
                 html.Img(
                     src=app.get_asset_url('github-logo.png'), height="27px", className="mr-3", 
                 ), 
-                href="https://www.github.com/", 
+                href="https://github.com/coding-with-deepa-shalini/liquor_sales_iowa", 
                 target="_blank"
             )
         ]),

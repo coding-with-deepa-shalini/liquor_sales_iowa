@@ -22,6 +22,20 @@
             "value": 2618.0
         },
         {
+            "block_id": "2020-W49",
+            "Date": "2020-12-05",
+            "start": 3.0,
+            "end": 4.0,
+            "value": 0.0
+        },
+        {
+            "block_id": "2020-W49",
+            "Date": "2020-12-06",
+            "start": 4.0,
+            "end": 5.0,
+            "value": 0.0
+        },
+        {
             "block_id": "2020-W50",
             "Date": "2020-12-07",
             "start": 0.0,
@@ -55,6 +69,20 @@
             "start": 4.0,
             "end": 5.0,
             "value": 2422.0
+        },
+        {
+            "block_id": "2020-W50",
+            "Date": "2020-12-12",
+            "start": 5.0,
+            "end": 6.0,
+            "value": 0.0
+        },
+        {
+            "block_id": "2020-W50",
+            "Date": "2020-12-13",
+            "start": 6.0,
+            "end": 7.0,
+            "value": 0.0
         },
         {
             "block_id": "2020-W51",
@@ -92,6 +120,20 @@
             "value": 1950.0
         },
         {
+            "block_id": "2020-W51",
+            "Date": "2020-12-19",
+            "start": 5.0,
+            "end": 6.0,
+            "value": 0.0
+        },
+        {
+            "block_id": "2020-W51",
+            "Date": "2020-12-20",
+            "start": 6.0,
+            "end": 7.0,
+            "value": 0.0
+        },
+        {
             "block_id": "2020-W52",
             "Date": "2020-12-21",
             "start": 0.0,
@@ -121,10 +163,24 @@
         },
         {
             "block_id": "2020-W52",
-            "Date": "2020-12-26",
+            "Date": "2020-12-25",
             "start": 4.0,
             "end": 5.0,
+            "value": 0.0
+        },
+        {
+            "block_id": "2020-W52",
+            "Date": "2020-12-26",
+            "start": 5.0,
+            "end": 6.0,
             "value": 2377.0
+        },
+        {
+            "block_id": "2020-W52",
+            "Date": "2020-12-27",
+            "start": 6.0,
+            "end": 7.0,
+            "value": 0.0
         },
         {
             "block_id": "2020-W53",
@@ -153,6 +209,27 @@
             "start": 3.0,
             "end": 4.0,
             "value": 2748.0
+        },
+        {
+            "block_id": "2020-W53",
+            "Date": "2021-01-01",
+            "start": 4.0,
+            "end": 5.0,
+            "value": 0.0
+        },
+        {
+            "block_id": "2020-W53",
+            "Date": "2021-01-02",
+            "start": 5.0,
+            "end": 6.0,
+            "value": 0.0
+        },
+        {
+            "block_id": "2020-W53",
+            "Date": "2021-01-03",
+            "start": 6.0,
+            "end": 7.0,
+            "value": 0.0
         },
         {
             "block_id": "2021-W1",
@@ -190,6 +267,20 @@
             "value": 2040.0
         },
         {
+            "block_id": "2021-W1",
+            "Date": "2021-01-09",
+            "start": 5.0,
+            "end": 6.0,
+            "value": 0.0
+        },
+        {
+            "block_id": "2021-W1",
+            "Date": "2021-01-10",
+            "start": 6.0,
+            "end": 7.0,
+            "value": 0.0
+        },
+        {
             "block_id": "2021-W2",
             "Date": "2021-01-11",
             "start": 0.0,
@@ -223,6 +314,20 @@
             "start": 4.0,
             "end": 5.0,
             "value": 1759.0
+        },
+        {
+            "block_id": "2021-W2",
+            "Date": "2021-01-16",
+            "start": 5.0,
+            "end": 6.0,
+            "value": 0.0
+        },
+        {
+            "block_id": "2021-W2",
+            "Date": "2021-01-17",
+            "start": 6.0,
+            "end": 7.0,
+            "value": 0.0
         },
         {
             "block_id": "2021-W3",
@@ -260,6 +365,20 @@
             "value": 2160.0
         },
         {
+            "block_id": "2021-W3",
+            "Date": "2021-01-23",
+            "start": 5.0,
+            "end": 6.0,
+            "value": 0.0
+        },
+        {
+            "block_id": "2021-W3",
+            "Date": "2021-01-24",
+            "start": 6.0,
+            "end": 7.0,
+            "value": 0.0
+        },
+        {
             "block_id": "2021-W4",
             "Date": "2021-01-25",
             "start": 0.0,
@@ -293,6 +412,20 @@
             "start": 4.0,
             "end": 5.0,
             "value": 1682.0
+        },
+        {
+            "block_id": "2021-W4",
+            "Date": "2021-01-30",
+            "start": 5.0,
+            "end": 6.0,
+            "value": 0.0
+        },
+        {
+            "block_id": "2021-W4",
+            "Date": "2021-01-31",
+            "start": 6.0,
+            "end": 7.0,
+            "value": 0.0
         },
         {
             "block_id": "2021-W5",
@@ -330,6 +463,20 @@
             "value": 1413.0
         },
         {
+            "block_id": "2021-W5",
+            "Date": "2021-02-06",
+            "start": 5.0,
+            "end": 6.0,
+            "value": 0.0
+        },
+        {
+            "block_id": "2021-W5",
+            "Date": "2021-02-07",
+            "start": 6.0,
+            "end": 7.0,
+            "value": 0.0
+        },
+        {
             "block_id": "2021-W6",
             "Date": "2021-02-08",
             "start": 0.0,
@@ -363,6 +510,20 @@
             "start": 4.0,
             "end": 5.0,
             "value": 1650.0
+        },
+        {
+            "block_id": "2021-W6",
+            "Date": "2021-02-13",
+            "start": 5.0,
+            "end": 6.0,
+            "value": 0.0
+        },
+        {
+            "block_id": "2021-W6",
+            "Date": "2021-02-14",
+            "start": 6.0,
+            "end": 7.0,
+            "value": 0.0
         },
         {
             "block_id": "2021-W7",
@@ -400,6 +561,20 @@
             "value": 1626.0
         },
         {
+            "block_id": "2021-W7",
+            "Date": "2021-02-20",
+            "start": 5.0,
+            "end": 6.0,
+            "value": 0.0
+        },
+        {
+            "block_id": "2021-W7",
+            "Date": "2021-02-21",
+            "start": 6.0,
+            "end": 7.0,
+            "value": 0.0
+        },
+        {
             "block_id": "2021-W8",
             "Date": "2021-02-22",
             "start": 0.0,
@@ -435,6 +610,20 @@
             "value": 2703.0
         },
         {
+            "block_id": "2021-W8",
+            "Date": "2021-02-27",
+            "start": 5.0,
+            "end": 6.0,
+            "value": 0.0
+        },
+        {
+            "block_id": "2021-W8",
+            "Date": "2021-02-28",
+            "start": 6.0,
+            "end": 7.0,
+            "value": 0.0
+        },
+        {
             "block_id": "2021-W9",
             "Date": "2021-03-01",
             "start": 0.0,
@@ -447,62 +636,6 @@
             "start": 1.0,
             "end": 2.0,
             "value": 1961.0
-        },
-        {
-            "block_id": "2021-W9",
-            "Date": "2021-03-03",
-            "start": 2.0,
-            "end": 3.0,
-            "value": 3203.0
-        },
-        {
-            "block_id": "2021-W9",
-            "Date": "2021-03-04",
-            "start": 3.0,
-            "end": 4.0,
-            "value": 3066.0
-        },
-        {
-            "block_id": "2021-W9",
-            "Date": "2021-03-05",
-            "start": 4.0,
-            "end": 5.0,
-            "value": 2209.0
-        },
-        {
-            "block_id": "2021-W10",
-            "Date": "2021-03-08",
-            "start": 0.0,
-            "end": 1.0,
-            "value": 2860.0
-        },
-        {
-            "block_id": "2021-W10",
-            "Date": "2021-03-09",
-            "start": 1.0,
-            "end": 2.0,
-            "value": 1619.0
-        },
-        {
-            "block_id": "2021-W10",
-            "Date": "2021-03-10",
-            "start": 2.0,
-            "end": 3.0,
-            "value": 2563.0
-        },
-        {
-            "block_id": "2021-W10",
-            "Date": "2021-03-11",
-            "start": 3.0,
-            "end": 4.0,
-            "value": 1605.0
-        },
-        {
-            "block_id": "2021-W10",
-            "Date": "2021-03-12",
-            "start": 4.0,
-            "end": 5.0,
-            "value": 2587.0
         }
     ],
     "income_histogram": [
@@ -526,6 +659,20 @@
             "start": 2.0,
             "end": 3.0,
             "value": 39714.33
+        },
+        {
+            "block_id": "2020-W49",
+            "Date": "2020-12-05",
+            "start": 3.0,
+            "end": 4.0,
+            "value": 0.0
+        },
+        {
+            "block_id": "2020-W49",
+            "Date": "2020-12-06",
+            "start": 4.0,
+            "end": 5.0,
+            "value": 0.0
         },
         {
             "block_id": "2020-W50",
@@ -563,6 +710,20 @@
             "value": 34185.15
         },
         {
+            "block_id": "2020-W50",
+            "Date": "2020-12-12",
+            "start": 5.0,
+            "end": 6.0,
+            "value": 0.0
+        },
+        {
+            "block_id": "2020-W50",
+            "Date": "2020-12-13",
+            "start": 6.0,
+            "end": 7.0,
+            "value": 0.0
+        },
+        {
             "block_id": "2020-W51",
             "Date": "2020-12-14",
             "start": 0.0,
@@ -598,6 +759,20 @@
             "value": 27845.98
         },
         {
+            "block_id": "2020-W51",
+            "Date": "2020-12-19",
+            "start": 5.0,
+            "end": 6.0,
+            "value": 0.0
+        },
+        {
+            "block_id": "2020-W51",
+            "Date": "2020-12-20",
+            "start": 6.0,
+            "end": 7.0,
+            "value": 0.0
+        },
+        {
             "block_id": "2020-W52",
             "Date": "2020-12-21",
             "start": 0.0,
@@ -627,10 +802,24 @@
         },
         {
             "block_id": "2020-W52",
-            "Date": "2020-12-26",
+            "Date": "2020-12-25",
             "start": 4.0,
             "end": 5.0,
+            "value": 0.0
+        },
+        {
+            "block_id": "2020-W52",
+            "Date": "2020-12-26",
+            "start": 5.0,
+            "end": 6.0,
             "value": 29660.99
+        },
+        {
+            "block_id": "2020-W52",
+            "Date": "2020-12-27",
+            "start": 6.0,
+            "end": 7.0,
+            "value": 0.0
         },
         {
             "block_id": "2020-W53",
@@ -659,6 +848,27 @@
             "start": 3.0,
             "end": 4.0,
             "value": 21484.33
+        },
+        {
+            "block_id": "2020-W53",
+            "Date": "2021-01-01",
+            "start": 4.0,
+            "end": 5.0,
+            "value": 0.0
+        },
+        {
+            "block_id": "2020-W53",
+            "Date": "2021-01-02",
+            "start": 5.0,
+            "end": 6.0,
+            "value": 0.0
+        },
+        {
+            "block_id": "2020-W53",
+            "Date": "2021-01-03",
+            "start": 6.0,
+            "end": 7.0,
+            "value": 0.0
         },
         {
             "block_id": "2021-W1",
@@ -696,6 +906,20 @@
             "value": 19695.33
         },
         {
+            "block_id": "2021-W1",
+            "Date": "2021-01-09",
+            "start": 5.0,
+            "end": 6.0,
+            "value": 0.0
+        },
+        {
+            "block_id": "2021-W1",
+            "Date": "2021-01-10",
+            "start": 6.0,
+            "end": 7.0,
+            "value": 0.0
+        },
+        {
             "block_id": "2021-W2",
             "Date": "2021-01-11",
             "start": 0.0,
@@ -729,6 +953,20 @@
             "start": 4.0,
             "end": 5.0,
             "value": 20272.28
+        },
+        {
+            "block_id": "2021-W2",
+            "Date": "2021-01-16",
+            "start": 5.0,
+            "end": 6.0,
+            "value": 0.0
+        },
+        {
+            "block_id": "2021-W2",
+            "Date": "2021-01-17",
+            "start": 6.0,
+            "end": 7.0,
+            "value": 0.0
         },
         {
             "block_id": "2021-W3",
@@ -766,6 +1004,20 @@
             "value": 21882.46
         },
         {
+            "block_id": "2021-W3",
+            "Date": "2021-01-23",
+            "start": 5.0,
+            "end": 6.0,
+            "value": 0.0
+        },
+        {
+            "block_id": "2021-W3",
+            "Date": "2021-01-24",
+            "start": 6.0,
+            "end": 7.0,
+            "value": 0.0
+        },
+        {
             "block_id": "2021-W4",
             "Date": "2021-01-25",
             "start": 0.0,
@@ -799,6 +1051,20 @@
             "start": 4.0,
             "end": 5.0,
             "value": 18094.8
+        },
+        {
+            "block_id": "2021-W4",
+            "Date": "2021-01-30",
+            "start": 5.0,
+            "end": 6.0,
+            "value": 0.0
+        },
+        {
+            "block_id": "2021-W4",
+            "Date": "2021-01-31",
+            "start": 6.0,
+            "end": 7.0,
+            "value": 0.0
         },
         {
             "block_id": "2021-W5",
@@ -836,6 +1102,20 @@
             "value": 16806.61
         },
         {
+            "block_id": "2021-W5",
+            "Date": "2021-02-06",
+            "start": 5.0,
+            "end": 6.0,
+            "value": 0.0
+        },
+        {
+            "block_id": "2021-W5",
+            "Date": "2021-02-07",
+            "start": 6.0,
+            "end": 7.0,
+            "value": 0.0
+        },
+        {
             "block_id": "2021-W6",
             "Date": "2021-02-08",
             "start": 0.0,
@@ -869,6 +1149,20 @@
             "start": 4.0,
             "end": 5.0,
             "value": 16175.65
+        },
+        {
+            "block_id": "2021-W6",
+            "Date": "2021-02-13",
+            "start": 5.0,
+            "end": 6.0,
+            "value": 0.0
+        },
+        {
+            "block_id": "2021-W6",
+            "Date": "2021-02-14",
+            "start": 6.0,
+            "end": 7.0,
+            "value": 0.0
         },
         {
             "block_id": "2021-W7",
@@ -906,6 +1200,20 @@
             "value": 15383.56
         },
         {
+            "block_id": "2021-W7",
+            "Date": "2021-02-20",
+            "start": 5.0,
+            "end": 6.0,
+            "value": 0.0
+        },
+        {
+            "block_id": "2021-W7",
+            "Date": "2021-02-21",
+            "start": 6.0,
+            "end": 7.0,
+            "value": 0.0
+        },
+        {
             "block_id": "2021-W8",
             "Date": "2021-02-22",
             "start": 0.0,
@@ -941,6 +1249,20 @@
             "value": 21803.36
         },
         {
+            "block_id": "2021-W8",
+            "Date": "2021-02-27",
+            "start": 5.0,
+            "end": 6.0,
+            "value": 0.0
+        },
+        {
+            "block_id": "2021-W8",
+            "Date": "2021-02-28",
+            "start": 6.0,
+            "end": 7.0,
+            "value": 0.0
+        },
+        {
             "block_id": "2021-W9",
             "Date": "2021-03-01",
             "start": 0.0,
@@ -953,62 +1275,6 @@
             "start": 1.0,
             "end": 2.0,
             "value": 28819.97
-        },
-        {
-            "block_id": "2021-W9",
-            "Date": "2021-03-03",
-            "start": 2.0,
-            "end": 3.0,
-            "value": 37936.67
-        },
-        {
-            "block_id": "2021-W9",
-            "Date": "2021-03-04",
-            "start": 3.0,
-            "end": 4.0,
-            "value": 38883.68
-        },
-        {
-            "block_id": "2021-W9",
-            "Date": "2021-03-05",
-            "start": 4.0,
-            "end": 5.0,
-            "value": 31367.95
-        },
-        {
-            "block_id": "2021-W10",
-            "Date": "2021-03-08",
-            "start": 0.0,
-            "end": 1.0,
-            "value": 34071.36
-        },
-        {
-            "block_id": "2021-W10",
-            "Date": "2021-03-09",
-            "start": 1.0,
-            "end": 2.0,
-            "value": 17942.71
-        },
-        {
-            "block_id": "2021-W10",
-            "Date": "2021-03-10",
-            "start": 2.0,
-            "end": 3.0,
-            "value": 34768.16
-        },
-        {
-            "block_id": "2021-W10",
-            "Date": "2021-03-11",
-            "start": 3.0,
-            "end": 4.0,
-            "value": 22439.64
-        },
-        {
-            "block_id": "2021-W10",
-            "Date": "2021-03-12",
-            "start": 4.0,
-            "end": 5.0,
-            "value": 25556.6
         }
     ],
     "text": [
@@ -1026,6 +1292,16 @@
             "block_id": "2020-W49",
             "position": 2.5,
             "value": "2020-12-04"
+        },
+        {
+            "block_id": "2020-W49",
+            "position": 3.5,
+            "value": "2020-12-05"
+        },
+        {
+            "block_id": "2020-W49",
+            "position": 4.5,
+            "value": "2020-12-06"
         },
         {
             "block_id": "2020-W50",
@@ -1053,6 +1329,16 @@
             "value": "2020-12-11"
         },
         {
+            "block_id": "2020-W50",
+            "position": 5.5,
+            "value": "2020-12-12"
+        },
+        {
+            "block_id": "2020-W50",
+            "position": 6.5,
+            "value": "2020-12-13"
+        },
+        {
             "block_id": "2020-W51",
             "position": 0.5,
             "value": "2020-12-14"
@@ -1078,6 +1364,16 @@
             "value": "2020-12-18"
         },
         {
+            "block_id": "2020-W51",
+            "position": 5.5,
+            "value": "2020-12-19"
+        },
+        {
+            "block_id": "2020-W51",
+            "position": 6.5,
+            "value": "2020-12-20"
+        },
+        {
             "block_id": "2020-W52",
             "position": 0.5,
             "value": "2020-12-21"
@@ -1100,7 +1396,17 @@
         {
             "block_id": "2020-W52",
             "position": 4.5,
+            "value": "2020-12-25"
+        },
+        {
+            "block_id": "2020-W52",
+            "position": 5.5,
             "value": "2020-12-26"
+        },
+        {
+            "block_id": "2020-W52",
+            "position": 6.5,
+            "value": "2020-12-27"
         },
         {
             "block_id": "2020-W53",
@@ -1121,6 +1427,21 @@
             "block_id": "2020-W53",
             "position": 3.5,
             "value": "2020-12-31"
+        },
+        {
+            "block_id": "2020-W53",
+            "position": 4.5,
+            "value": "2021-01-01"
+        },
+        {
+            "block_id": "2020-W53",
+            "position": 5.5,
+            "value": "2021-01-02"
+        },
+        {
+            "block_id": "2020-W53",
+            "position": 6.5,
+            "value": "2021-01-03"
         },
         {
             "block_id": "2021-W1",
@@ -1148,6 +1469,16 @@
             "value": "2021-01-08"
         },
         {
+            "block_id": "2021-W1",
+            "position": 5.5,
+            "value": "2021-01-09"
+        },
+        {
+            "block_id": "2021-W1",
+            "position": 6.5,
+            "value": "2021-01-10"
+        },
+        {
             "block_id": "2021-W2",
             "position": 0.5,
             "value": "2021-01-11"
@@ -1171,6 +1502,16 @@
             "block_id": "2021-W2",
             "position": 4.5,
             "value": "2021-01-15"
+        },
+        {
+            "block_id": "2021-W2",
+            "position": 5.5,
+            "value": "2021-01-16"
+        },
+        {
+            "block_id": "2021-W2",
+            "position": 6.5,
+            "value": "2021-01-17"
         },
         {
             "block_id": "2021-W3",
@@ -1198,6 +1539,16 @@
             "value": "2021-01-22"
         },
         {
+            "block_id": "2021-W3",
+            "position": 5.5,
+            "value": "2021-01-23"
+        },
+        {
+            "block_id": "2021-W3",
+            "position": 6.5,
+            "value": "2021-01-24"
+        },
+        {
             "block_id": "2021-W4",
             "position": 0.5,
             "value": "2021-01-25"
@@ -1221,6 +1572,16 @@
             "block_id": "2021-W4",
             "position": 4.5,
             "value": "2021-01-29"
+        },
+        {
+            "block_id": "2021-W4",
+            "position": 5.5,
+            "value": "2021-01-30"
+        },
+        {
+            "block_id": "2021-W4",
+            "position": 6.5,
+            "value": "2021-01-31"
         },
         {
             "block_id": "2021-W5",
@@ -1248,6 +1609,16 @@
             "value": "2021-02-05"
         },
         {
+            "block_id": "2021-W5",
+            "position": 5.5,
+            "value": "2021-02-06"
+        },
+        {
+            "block_id": "2021-W5",
+            "position": 6.5,
+            "value": "2021-02-07"
+        },
+        {
             "block_id": "2021-W6",
             "position": 0.5,
             "value": "2021-02-08"
@@ -1271,6 +1642,16 @@
             "block_id": "2021-W6",
             "position": 4.5,
             "value": "2021-02-12"
+        },
+        {
+            "block_id": "2021-W6",
+            "position": 5.5,
+            "value": "2021-02-13"
+        },
+        {
+            "block_id": "2021-W6",
+            "position": 6.5,
+            "value": "2021-02-14"
         },
         {
             "block_id": "2021-W7",
@@ -1298,6 +1679,16 @@
             "value": "2021-02-19"
         },
         {
+            "block_id": "2021-W7",
+            "position": 5.5,
+            "value": "2021-02-20"
+        },
+        {
+            "block_id": "2021-W7",
+            "position": 6.5,
+            "value": "2021-02-21"
+        },
+        {
             "block_id": "2021-W8",
             "position": 0.5,
             "value": "2021-02-22"
@@ -1323,6 +1714,16 @@
             "value": "2021-02-26"
         },
         {
+            "block_id": "2021-W8",
+            "position": 5.5,
+            "value": "2021-02-27"
+        },
+        {
+            "block_id": "2021-W8",
+            "position": 6.5,
+            "value": "2021-02-28"
+        },
+        {
             "block_id": "2021-W9",
             "position": 0.5,
             "value": "2021-03-01"
@@ -1331,46 +1732,40 @@
             "block_id": "2021-W9",
             "position": 1.5,
             "value": "2021-03-02"
+        }
+    ],
+    "holidays": [
+        {
+            "block_id": "2020-W52",
+            "date": "2020-12-25",
+            "holiday": "Christmas Day",
+            "start": 4.0,
+            "end": 5.0,
+            "color": "red"
         },
         {
-            "block_id": "2021-W9",
-            "position": 2.5,
-            "value": "2021-03-03"
+            "block_id": "2020-W53",
+            "date": "2021-01-01",
+            "holiday": "New Year's Day",
+            "start": 4.0,
+            "end": 5.0,
+            "color": "red"
         },
         {
-            "block_id": "2021-W9",
-            "position": 3.5,
-            "value": "2021-03-04"
+            "block_id": "2021-W3",
+            "date": "2021-01-18",
+            "holiday": "Martin Luther King Jr. Day",
+            "start": 0.0,
+            "end": 1.0,
+            "color": "red"
         },
         {
-            "block_id": "2021-W9",
-            "position": 4.5,
-            "value": "2021-03-05"
-        },
-        {
-            "block_id": "2021-W10",
-            "position": 0.5,
-            "value": "2021-03-08"
-        },
-        {
-            "block_id": "2021-W10",
-            "position": 1.5,
-            "value": "2021-03-09"
-        },
-        {
-            "block_id": "2021-W10",
-            "position": 2.5,
-            "value": "2021-03-10"
-        },
-        {
-            "block_id": "2021-W10",
-            "position": 3.5,
-            "value": "2021-03-11"
-        },
-        {
-            "block_id": "2021-W10",
-            "position": 4.5,
-            "value": "2021-03-12"
+            "block_id": "2021-W7",
+            "date": "2021-02-15",
+            "holiday": "Washington's Birthday",
+            "start": 0.0,
+            "end": 1.0,
+            "color": "red"
         }
     ],
     "calendar": [
@@ -1378,91 +1773,85 @@
             "id": "2020-W49",
             "label": "2020-W49",
             "color": "#ffffff",
-            "len": 3.0
+            "len": 5.0
         },
         {
             "id": "2020-W50",
             "label": "2020-W50",
             "color": "#ffffff",
-            "len": 5.0
+            "len": 7.0
         },
         {
             "id": "2020-W51",
             "label": "2020-W51",
             "color": "#ffffff",
-            "len": 5.0
+            "len": 7.0
         },
         {
             "id": "2020-W52",
             "label": "2020-W52",
             "color": "#ffffff",
-            "len": 5.0
+            "len": 7.0
         },
         {
             "id": "2020-W53",
             "label": "2020-W53",
             "color": "#ffffff",
-            "len": 4.0
+            "len": 7.0
         },
         {
             "id": "2021-W1",
             "label": "2021-W1",
             "color": "#ffffff",
-            "len": 5.0
-        },
-        {
-            "id": "2021-W10",
-            "label": "2021-W10",
-            "color": "#ffffff",
-            "len": 5.0
+            "len": 7.0
         },
         {
             "id": "2021-W2",
             "label": "2021-W2",
             "color": "#ffffff",
-            "len": 5.0
+            "len": 7.0
         },
         {
             "id": "2021-W3",
             "label": "2021-W3",
             "color": "#ffffff",
-            "len": 5.0
+            "len": 7.0
         },
         {
             "id": "2021-W4",
             "label": "2021-W4",
             "color": "#ffffff",
-            "len": 5.0
+            "len": 7.0
         },
         {
             "id": "2021-W5",
             "label": "2021-W5",
             "color": "#ffffff",
-            "len": 5.0
+            "len": 7.0
         },
         {
             "id": "2021-W6",
             "label": "2021-W6",
             "color": "#ffffff",
-            "len": 5.0
+            "len": 7.0
         },
         {
             "id": "2021-W7",
             "label": "2021-W7",
             "color": "#ffffff",
-            "len": 5.0
+            "len": 7.0
         },
         {
             "id": "2021-W8",
             "label": "2021-W8",
             "color": "#ffffff",
-            "len": 5.0
+            "len": 7.0
         },
         {
             "id": "2021-W9",
             "label": "2021-W9",
             "color": "#ffffff",
-            "len": 5.0
+            "len": 2.0
         }
     ]
 }

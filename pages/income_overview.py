@@ -28,10 +28,6 @@ holidays['date'] = pd.to_datetime(holidays['date'], format="%Y-%m-%d")
 holidays['date'] = holidays['date'].dt.date
 hols = holidays['date']'''
 
-# values for dropdown menus
-branches = utils.get_unique_values(df, "county")
-product_lines = utils.get_unique_values(df, "category_name")
-
 #data_table_title = {"Quantity": "Quantity of each product line sold daily", "Gross Income": "Gross income of each product line sold daily"}
 
 layout_config = {
@@ -48,24 +44,24 @@ income_heatmap_config = {
     "innerRadius": 190, 
     "outerRadius": 240, 
     "color": "Purples", 
-    #"tooltipContent":{"source": "block_id", "target":"date", "targetEnd":"value"}
+    #"tooltipContent":{"source": "block_id", "target":"Date", "targetEnd":"value"}
 }
 
 checkout_heatmap_config = {
     "innerRadius": 110, 
     "outerRadius": 160, 
     "color": "Greys", 
-    #"tooltipContent":{"source": "block_id", "target":"date", "targetEnd":"value"}
+    #"tooltipContent":{"source": "block_id", "target":"Date", "targetEnd":"value"}
 }
 
-'''holidays_config = {
+holidays_config = {
     "innerRadius": 80,
     "outerRadius": 100,
-    "thickness": 4,
+    "thickness": 5,
     "color": "red",
     "strokeWidth": 0,
-    #"tooltipContent": {"source": "block_id", "target": "date", "targetEnd": "holiday"}
-}'''
+    #"tooltipContent": {"source": "block_id", "target": "Date", "targetEnd": "holiday"}
+}
 
 layout = html.Div([
     layout_helpers.insights_subheader,   
@@ -112,7 +108,7 @@ layout = html.Div([
                             ], className="col-md-4"),
                             dbc.Col([
                                 dbc.CardBody([
-                                    html.H5("Income", className="text-secondary"),
+                                    html.H5("Sale in dollars", className="text-secondary"),
                                     html.H2([], id="kpi-gross-income")
                                 ])
                             ], className="col-md-8",)
@@ -141,10 +137,9 @@ layout = html.Div([
             # Legend for Calendar Circos
             dbc.Row([
                 dbc.Col([
-                    dbc.Badge("Gross income", pill=True, color="primary"),
-                    dbc.Badge("Checkouts", pill=True, color="grey"),
-                    dbc.Badge("Public holidays", pill=True, color="danger"),
-                    dbc.Badge("Maximum", pill=True, color="success")
+                    dbc.Badge("Sale in dollars", pill=True, color="primary"),
+                    dbc.Badge("Bottles sold", pill=True, color="grey"),
+                    dbc.Badge("Public holidays", pill=True, color="danger")
                     ], width=1),                 
                 ]),
             ])                     
@@ -158,26 +153,20 @@ layout = html.Div([
             html.Br(),
             html.Br(),
 
-            html.Hr(),
-
-            # dashboard specific settings
-            dcc.Dropdown(
-                id="dropdown-city",
-                options=branches,
-                placeholder="Select city",
-                multi=True,
-                persistence=True, persistence_type="local"
-            ),
+            layout_helpers.county_dropdown,
 
             html.Br(),
 
-            dcc.Dropdown(
-                id="dropdown-product-line",
-                options=product_lines,
-                placeholder="Select product line",
-                multi=True,
-                persistence=True, persistence_type="local"
-            )],
+            layout_helpers.city_dropdown,
+
+            html.Br(),
+
+            layout_helpers.category_dropdown,
+            
+            html.Br(),
+            
+            layout_helpers.vendor_dropdown
+            ],
 
             title="Settings",
             placement="end",
@@ -205,22 +194,21 @@ def toggle_settings_menu(n, is_open):
     Output("kpi-units-sold", "children")],
     [Input("date-picker-range", "start_date"),
     Input("date-picker-range", "end_date"),
+    Input("dropdown-county", "value"),
     Input("dropdown-city", "value"),
-    Input("dropdown-product-line", "value")]
+    Input("dropdown-category-name", "value"),
+    Input("dropdown-vendor-name", "value")]
 )
-def update_dashboard(start_date, end_date, city_dropdown, product_dropdown):
+def update_dashboard(start_date, end_date, county_dropdown, city_dropdown, category_dropdown, vendor_dropdown):
 
     # filter df by start and end dates selected
     final = df[(df['Date'] >= start_date) & (df['Date'] <= end_date)]
 
     # filter df by dropdown selections
-    final = utils.filter_df_by_dropdown_select(final, city_dropdown, "county")
-    final = utils.filter_df_by_dropdown_select(final, product_dropdown, "category_name")
-    #final = utils.filter_df_by_dropdown_select(final, payment_dropdown, "Payment")
-
-    # filter df by radio items selections
-    #final = utils.filter_df_by_radioitems(final, customer_type, "Customer type")
-    #final = utils.filter_df_by_radioitems(final, gender, "Gender")
+    final = utils.filter_df_by_dropdown_select(final, county_dropdown, "county")
+    final = utils.filter_df_by_dropdown_select(final, city_dropdown, "city")
+    final = utils.filter_df_by_dropdown_select(final, category_dropdown, "category_name")
+    final = utils.filter_df_by_dropdown_select(final, vendor_dropdown, "vendor_name")
 
     # write json file and read it into a variable which will be used for Calendar Circos
     circos_helpers.write_circos_json(final)
@@ -243,6 +231,11 @@ def update_dashboard(start_date, end_date, city_dropdown, product_dropdown):
                     "type": "TEXT",
                     "data": circos_data["text"],
                     "config": text_config
+                },
+                {
+                    "type": "STACK",
+                    "data": circos_data["holidays"],
+                    "config": holidays_config
                 }
             ]
 

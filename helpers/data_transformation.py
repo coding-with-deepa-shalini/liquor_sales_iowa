@@ -12,7 +12,8 @@ def transform_sales_data(df):
     df['month_year'] = df['month'].astype(str) + '-' + df['year'].astype(str)
     #df['weeknumber_year'] = df['weeknumber'].astype(str) + '-' + df['year'].astype(str)
     df['year_weeknumber'] = df['year'].astype(str) + '-' + 'W' + (df['Date']).dt.isocalendar().week.astype(str)
-    df['week_start_date'] = [datetime.datetime.strptime(x + '-1', '%G-W%V-%u') for x in df['year_weeknumber'].tolist()]
+    #df['week_start_date'] = [datetime.datetime.strptime(x + '-1', '%G-W%V-%u') for x in df['year_weeknumber'].tolist()]
+    df['county'] = df['county'].str.capitalize()
     df.sort_values(['Date'], inplace=True)
 
     return df

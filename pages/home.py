@@ -6,7 +6,7 @@ import dash_bootstrap_components as dbc
 dash.register_page(
     __name__,
     path='/',
-    title="Supermarket Sales",
+    title="Iowa Liquor Sales",
     name="Home"
 )
 

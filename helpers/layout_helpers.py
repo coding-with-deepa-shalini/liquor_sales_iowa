@@ -1,5 +1,4 @@
 import os
-from unicodedata import category
 import pandas as pd
 from dash import dcc, html
 import dash_bootstrap_components as dbc
@@ -23,50 +22,53 @@ cities = utils.get_unique_values(df, "city")
 category_names = utils.get_unique_values(df, "category_name")
 vendor_names = utils.get_unique_values(df, "vendor_name")
 
-insights_subheader = dbc.Row([
-    dbc.Col([], width=1),
-    dbc.Col([
-        html.Div(
-            dcc.Link(
-                "Sales Overview",
-                href="/sales-overview",
-                style={'font-size': "21px"}
-            )
-        ),
-        html.Div(
-            dcc.Link(
-                "Income by Product Line",
-                href="/sales-overview",
-                style={'font-size': "21px"}
-            )
-        ),
-        html.Div(
-            dcc.Link(
-                "Income by Branch",
-                href="/sales-overview",
-                style={'font-size': "21px"}
-            )
-        )], width=5, className="d-flex align-content-center flex-wrap justify-content-evenly"),
-
+def get_subheader(settings_btn_id):
+    insights_subheader = dbc.Row([
+        dbc.Col([], width=1),
         dbc.Col([
-            html.A(
-                html.Img(id="btn-settings",
-                    src="assets/settings-icon.svg", height="45px"
+            html.Div(
+                dcc.Link(
+                    "Overview",
+                    href="/sales-overview",
+                    style={'font-size': "21px"}
                 )
-            )
-        ], width=5, className="d-flex justify-content-end"),
-        dbc.Col([], width=1)
-    ], 
-    className="bg-secondary"
-)
+            ),
+            html.Div(
+                dcc.Link(
+                    "Sales by Store",
+                    href="/sales-by-store",
+                    style={'font-size': "21px"}
+                )
+            ),
+            html.Div(
+                dcc.Link(
+                    "Sales by County",
+                    href="/sales-overview",
+                    style={'font-size': "21px"}
+                )
+            )], width=5, className="d-flex align-content-center flex-wrap justify-content-evenly"),
+
+            dbc.Col([
+                html.A(
+                    html.Img(id=settings_btn_id,
+                        src="assets/settings-icon.svg", height="45px"
+                    )
+                )
+            ], width=5, className="d-flex justify-content-end"),
+            dbc.Col([], width=1)
+        ], 
+        className="bg-secondary"
+    )
+
+    return insights_subheader
 
 # Common settings
 date_picker_range = dcc.DatePickerRange(
                 id="date-picker-range",
                 start_date = start_date,
-                min_date_allowed = min(df["date"]),
+                min_date_allowed = min(df["Date"]),
                 end_date = end_date,
-                max_date_allowed = max(df["date"]),
+                max_date_allowed = max(df["Date"]),
                 persistence=True, persistence_type="local"
             )
 
@@ -96,7 +98,7 @@ category_dropdown = dcc.Dropdown(
 
 vendor_dropdown = dcc.Dropdown(
                 id="dropdown-vendor-name",
-                options=category_names,
+                options=vendor_names,
                 placeholder="Select vendor name",
                 multi=True,
                 persistence=True, persistence_type="local"

@@ -3,7 +3,7 @@ import dash
 import pandas as pd
 import dash_bio as dashbio
 import dash_bootstrap_components as dbc
-from dash import dcc, html, dash_table, Input, Output, State, callback
+from dash import html, dash_table, Input, Output, State, callback
 
 import utils
 from helpers import layout_helpers, circos_helpers, data_transformation
@@ -19,16 +19,6 @@ DATAPATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../data")
 
 raw_df = pd.read_csv(os.path.join(DATAPATH,"Iowa_liquor_sales_2021_minimal.csv"), index_col=False)
 df = data_transformation.transform_sales_data(raw_df)
-
-#table = df.groupby(by=['Date', 'Product line'])['Quantity'].sum().reset_index(name='value')
-#transposed = table.pivot(index='date', columns='Product line', values='value').reset_index().rename_axis(None, axis=1)
-
-'''holidays = pd.read_csv(os.path.join(DATAPATH,"holidays-myanmar.csv"), index_col=False)
-holidays['date'] = pd.to_datetime(holidays['date'], format="%Y-%m-%d")
-holidays['date'] = holidays['date'].dt.date
-hols = holidays['date']'''
-
-#data_table_title = {"Quantity": "Quantity of each product line sold daily", "Gross Income": "Gross income of each product line sold daily"}
 
 layout_config = {
     "labels": {"display": False},
@@ -64,7 +54,7 @@ holidays_config = {
 }
 
 layout = html.Div([
-    layout_helpers.insights_subheader,   
+    layout_helpers.get_subheader("btn-settings-overview"),   
     dbc.Tooltip(
         "Settings",
         target="btn-settings"
@@ -131,8 +121,22 @@ layout = html.Div([
 
             html.Br(),           
 
-            # Row for data table and settings
-            dbc.Row([  
+            # Row for bar chart
+            dbc.Row([
+                 dash_table.DataTable(id="data-table",
+                    page_size=10,
+                    style_table={'overflowY': 'auto'},
+                    style_header={
+                        'whiteSpace': 'normal',
+                        'height': 'auto',
+                        'fontWeight': 'bold'
+                    },
+                    style_cell={
+                        'overflow': 'hidden',
+                        'textOverflow': 'ellipsis',
+                        'maxWidth': 0
+                    },
+                ),  
 
             # Legend for Calendar Circos
             dbc.Row([
@@ -148,8 +152,8 @@ layout = html.Div([
         # Settings menu
         dbc.Offcanvas([
 
-            # common settings for Insights section
             layout_helpers.date_picker_range,
+
             html.Br(),
             html.Br(),
 
@@ -170,18 +174,17 @@ layout = html.Div([
 
             title="Settings",
             placement="end",
-            id="settings-menu",
+            id="settings-menu-overview",
             is_open=False,            
         )          
     ])
 ])
 
 @callback(
-    Output("settings-menu", "is_open"),
-    Input("btn-settings", "n_clicks"),
-    [State("settings-menu", "is_open")],
+    Output("settings-menu-overview", "is_open"),
+    Input("btn-settings-overview", "n_clicks"),
+    [State("settings-menu-overview", "is_open")],
 )
-
 def toggle_settings_menu(n, is_open):
     if (n):
         return not is_open
@@ -191,7 +194,10 @@ def toggle_settings_menu(n, is_open):
     Output("calendar-circos", "tracks"),
     Output("kpi-checkouts", "children"),
     Output("kpi-gross-income", "children"),
-    Output("kpi-units-sold", "children")],
+    Output("kpi-units-sold", "children"),
+    Output("data-table", "data"),
+    Output("data-table", "columns"),
+    Output("data-table", "style_data_conditional")],
     [Input("date-picker-range", "start_date"),
     Input("date-picker-range", "end_date"),
     Input("dropdown-county", "value"),
@@ -244,28 +250,25 @@ def update_dashboard(start_date, end_date, county_dropdown, city_dropdown, categ
     kpi2 = final['sale_dollars'].sum().round(2).astype(str)
     kpi3 = final['bottles_sold'].sum().astype(str)
 
-    # transform df by data table radio items selection
-    '''table = final.groupby(by=['date', 'Product line'])[radio_sel_table].sum().round(2).reset_index(name='value')
-    transposed = table.pivot(index='date', columns='Product line', values='value').reset_index().rename_axis(None, axis=1)
-    transposed['date'] = transposed['date'].dt.date
-    transposed.rename(columns={"date": "Date"}, inplace=True)
-    transposed['id'] = transposed.index'''
+    # transform df for data table
+    transformed1 = final.groupby(['category_name'])['sale_dollars'].sum().round(2).reset_index(name='value')
+    transformed1.sort_values('value', ascending=False, inplace=True, ignore_index=True)
+    transformed1.rename(columns={'value': 'Sale ($)'}, inplace=True)
+
+    transformed2 = final.groupby(['category_name'])['bottles_sold'].sum().round(2).reset_index(name='value')
+    transformed2.sort_values('value', ascending=False, inplace=True, ignore_index=True)
+    transformed2.rename(columns={'value': "Bottles sold"}, inplace=True)
+
+    merged = pd.merge(transformed1, transformed2, on='category_name')
+    merged.rename(columns={'category_name': 'Category'}, inplace=True)
 
     # data table returns
-    '''data=transposed.to_dict('records')
-    columns=[{"name": i, "id": i} for i in transposed.columns]
-    columns.pop()
+    data=merged.to_dict('records')
+    columns=[{"name": i, "id": i} for i in merged.columns]
 
-    style_data_table_conditional = utils.highlight_max_row(transposed) + [
-        {
-                'if': {
-                    'filter_query': '{{Date}} = {}'.format(i),
-                    'column_id': 'Date',
-                },
-                'backgroundColor': '#FC3939',
-                'color': 'white'
-            }
-            for i in hols
-    ]   '''
+    style_data_table_conditional = (
+        utils.data_bars(merged, 'Bottles sold', '#808080') +
+        utils.data_bars(merged, 'Sale ($)', '#7261AC')
+    )
     
-    return layout, tracks, kpi1, kpi2, kpi3
+    return layout, tracks, kpi1, kpi2, kpi3, data, columns, style_data_table_conditional

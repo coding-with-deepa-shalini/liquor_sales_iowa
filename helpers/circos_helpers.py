@@ -106,6 +106,7 @@ def write_circos_json(df: pd):
     # base layout
     calendar = checkout_ring_df.value_counts(['block_id'], sort=False).reset_index(name='len')   
     calendar.sort_values(by=['block_id'], key=lambda s: s.str[6:].astype(int), inplace=True)
+    #.sort_values(by=['block_id'], key=lambda x: int(x.str.split('-')[1].astype(str).split('W')[1]), inplace=True)
     calendar.sort_values(by=['block_id'], inplace=True)
 
     calendar['label'] = calendar['block_id']

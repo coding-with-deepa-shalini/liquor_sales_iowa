@@ -36,7 +36,7 @@ layout = html.Div([
                     html.Img(
                         src="assets/income-by-product.png", height="120px"
                     ),
-                ], href="/income-by-product-line", className="me-3"),
+                ], href="/sales-by-store", className="me-3"),
             html.A([
                     html.Img(
                         src="assets/income-by-branch.png", height="120px"

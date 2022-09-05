@@ -82,7 +82,7 @@ county_dropdown = dcc.Dropdown(
 
 city_dropdown = dcc.Dropdown(
                 id="dropdown-city",
-                options=counties,
+                options=cities,
                 placeholder="Select city",
                 multi=True,
                 persistence=True, persistence_type="local"

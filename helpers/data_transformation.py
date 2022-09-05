@@ -1,5 +1,4 @@
 import pandas as pd
-import datetime
 
 def transform_sales_data(df):
     df['Date'] = pd.to_datetime(df['date'], format='%m/%d/%Y')

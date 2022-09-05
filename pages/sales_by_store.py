@@ -91,9 +91,11 @@ def update_dashboard(start_date, end_date, county_dropdown, city_dropdown, categ
     final = utils.filter_df_by_dropdown_select(final, category_dropdown, "category_name")
     final = utils.filter_df_by_dropdown_select(final, vendor_dropdown, "vendor_name")
 
+    transformed = final.groupby(['store_name', 'address', 'city', 'lat', 'lon'])['bottles_sold'].sum().reset_index(name='value')
+
     random.seed(1)
 
-    category_intervals = pd.cut(df['bottles_sold'], bins=9, right=False).unique().tolist()
+    category_intervals = pd.cut(transformed['value'], bins=9, right=False).unique().tolist()
     # remove the nan
     category_intervals.pop()
 
@@ -106,7 +108,6 @@ def update_dashboard(start_date, end_date, county_dropdown, city_dropdown, categ
         categories.append(tuple(category))
 
     number_of_colours = len(categories)
-
     colours = ["#"+''.join([random.choice('0123456789ABCDEF') for j in range(6)])
                 for i in range(number_of_colours)]
 
@@ -114,14 +115,15 @@ def update_dashboard(start_date, end_date, county_dropdown, city_dropdown, categ
 
     for i in range(len(categories)):
         cat = categories[i]
-        df_sub = final[cat[0]:cat[1]]
+        df_sub = transformed[cat[0]:cat[1]]
         fig.add_trace(go.Scattergeo(
             locationmode = 'USA-states',
             lon = df_sub['lon'],
             lat = df_sub['lat'],
-            text = df_sub['store_number'].astype(str) + df_sub['store_name'] + "\n" + df_sub['address'] + "\n" + df_sub['city'],
+            text = "Bottles sold: " + df_sub['value'].astype(str) + "<br>" + "Store: " + df_sub['store_name'] + "<br>" + 
+                "Address: " + df_sub['address'] + "<br>" + "City: " + df_sub['city'],
             marker = dict(
-                size = df_sub['bottles_sold'],
+                size = df_sub['value'],
                 color = colours[i],
                 line_color='rgb(40,40,40)',
                 line_width=0.5,

@@ -9,8 +9,8 @@ from . import data_transformation
 
 DATAPATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../data")
 
-raw_df = pd.read_csv(os.path.join(DATAPATH,"Iowa_liquor_sales_2021_minimal.csv"), index_col=False)
-df = data_transformation.transform_sales_data(raw_df)
+raw_df = pd.read_csv(os.path.join(DATAPATH,"Iowa_liquor_sales_2021_minimal_with_type.csv"), index_col=False)
+df = data_transformation.transform_sales_data_overview(raw_df)
 
 # parameters for date-picker
 start_date = min(df['Date'])
@@ -42,8 +42,8 @@ def get_subheader(settings_btn_id):
             ),
             html.Div(
                 dcc.Link(
-                    "Sales by County",
-                    href="/sales-overview",
+                    "Sales by Liquor type",
+                    href="/sales-by-liquor-type",
                     style={'font-size': "21px"}
                 )
             )], width=5, className="d-flex align-content-center flex-wrap justify-content-evenly"),

@@ -17,8 +17,8 @@ dash.register_page(
 
 DATAPATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../data")
 
-raw_df = pd.read_csv(os.path.join(DATAPATH,"Iowa_liquor_sales_2021_minimal.csv"), index_col=False)
-df = data_transformation.transform_sales_data(raw_df)
+raw_df = pd.read_csv(os.path.join(DATAPATH,"Iowa_liquor_sales_2021_minimal_with_type.csv"), index_col=False)
+df = data_transformation.transform_sales_data_overview(raw_df)
 
 layout_config = {
     "labels": {"display": False},
@@ -30,24 +30,31 @@ text_config = {
     "style": {"font-size": 12, "font-weight": "bold"}  
 }
 
-income_heatmap_config = {
-    "innerRadius": 190, 
-    "outerRadius": 240, 
-    "color": "Purples", 
+dollars_heatmap_config = {
+    "innerRadius": 200, 
+    "outerRadius": 250, 
+    "color": "Greens", 
     #"tooltipContent":{"source": "block_id", "target":"Date", "targetEnd":"value"}
 }
 
-checkout_heatmap_config = {
-    "innerRadius": 110, 
-    "outerRadius": 160, 
+volume_heatmap_config = {
+    "innerRadius": 140, 
+    "outerRadius": 190, 
     "color": "Greys", 
     #"tooltipContent":{"source": "block_id", "target":"Date", "targetEnd":"value"}
 }
 
+bottles_heatmap_config = {
+    "innerRadius": 80, 
+    "outerRadius": 130, 
+    "color": "Purples", 
+    #"tooltipContent":{"source": "block_id", "target":"Date", "targetEnd":"value"}
+}
+
 holidays_config = {
-    "innerRadius": 80,
-    "outerRadius": 100,
-    "thickness": 5,
+    "innerRadius": 50,
+    "outerRadius": 70,
+    "thickness": 20,
     "color": "red",
     "strokeWidth": 0,
     #"tooltipContent": {"source": "block_id", "target": "Date", "targetEnd": "holiday"}
@@ -121,9 +128,9 @@ layout = html.Div([
 
             html.Br(),           
 
-            # Row for bar chart
+            # Row for data table
             dbc.Row([
-                 dash_table.DataTable(id="data-table",
+                 dash_table.DataTable(id="data-table-overview",
                     page_size=10,
                     style_table={'overflowY': 'auto'},
                     style_header={
@@ -141,8 +148,9 @@ layout = html.Div([
             # Legend for Calendar Circos
             dbc.Row([
                 dbc.Col([
-                    dbc.Badge("Sale in dollars", pill=True, color="primary"),
-                    dbc.Badge("Bottles sold", pill=True, color="grey"),
+                    dbc.Badge("Sale (in dollars)", pill=True, color="success"),
+                    dbc.Badge("Volume sold (in liters)", pill=True, color="dark"),
+                    dbc.Badge("Bottles sold", pill=True, color="primary"),
                     dbc.Badge("Public holidays", pill=True, color="danger")
                     ], width=1),                 
                 ]),
@@ -195,9 +203,9 @@ def toggle_settings_menu(n, is_open):
     Output("kpi-checkouts", "children"),
     Output("kpi-gross-income", "children"),
     Output("kpi-units-sold", "children"),
-    Output("data-table", "data"),
-    Output("data-table", "columns"),
-    Output("data-table", "style_data_conditional")],
+    Output("data-table-overview", "data"),
+    Output("data-table-overview", "columns"),
+    Output("data-table-overview", "style_data_conditional")],
     [Input("date-picker-range", "start_date"),
     Input("date-picker-range", "end_date"),
     Input("dropdown-county", "value"),
@@ -226,12 +234,17 @@ def update_dashboard(start_date, end_date, county_dropdown, city_dropdown, categ
                 {
                     "type": "HEATMAP",
                     "data": circos_data["income_histogram"],
-                    "config": income_heatmap_config,
+                    "config": dollars_heatmap_config,
+                },
+                {
+                    "type": "HEATMAP",
+                    "data": circos_data["volume_histogram"],
+                    "config": volume_heatmap_config,
                 },
                 {
                     "type": "HEATMAP",
                     "data": circos_data["sales_histogram"],
-                    "config": checkout_heatmap_config,
+                    "config": bottles_heatmap_config,
                 },
                 {
                     "type": "TEXT",

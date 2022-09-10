@@ -41,7 +41,7 @@ layout = html.Div([
                     html.Img(
                         src="assets/income-by-branch.png", height="120px"
                     ),
-                ]),
+                ], href="/sales-by-liquor-type"),
         ], className="d-flex justify-content-center m-3 bg-warning")
     ], placement="bottom", close_button=False, is_open=True, backdrop=False, className="bg-warning", style={'height': '50%'}),    
 ])

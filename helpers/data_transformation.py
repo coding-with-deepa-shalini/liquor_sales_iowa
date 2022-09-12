@@ -23,7 +23,7 @@ def transform_sales_data_by_store(df):
 
     transformed.loc[transformed['store_location'] == 'POINT (-95.79728 45.009612)', 'store_location'] = 'POINT (-91.11346 40.80724)'
     transformed.loc[transformed['store_location'] == 'POINT (-73.982421 40.305231000000006)', 'store_location'] = 'POINT (-94.44483 42.95923)'
-    transformed['lat'] = transformed['store_location'].str.split(' ').str.get(2).str.replace(')', '')
-    transformed['lon'] = transformed['store_location'].str.split(' ').str.get(1).str.replace('(', '')
+    transformed['lat'] = transformed['store_location'].str.split(' ').str.get(2).str.replace(')', '').astype(float)
+    transformed['lon'] = transformed['store_location'].str.split(' ').str.get(1).str.replace('(', '').astype(float)
 
     return transformed

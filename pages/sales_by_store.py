@@ -18,6 +18,8 @@ dash.register_page(
 )
 
 DATAPATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../data")
+# set token to use Mapbox API
+px.set_mapbox_access_token(open(os.path.join(DATAPATH, ".mapbox_token")).read())
 
 raw_df = pd.read_csv(os.path.join(DATAPATH,"Iowa_liquor_sales_2021_minimal_with_type.csv"), index_col=False)
 df = data_transformation.transform_sales_data_by_store(raw_df)
@@ -32,14 +34,13 @@ layout = html.Div([
     html.Div([
         dbc.Row([ 
             dbc.Col([                                 
-                dbc.Label("Bin values into categories"),
-                dbc.Input(
-                    id="input-bins-bubble-map",
-                    type="number", min=0, max=20, step=1,
-                    value=9,
-                    persistence=True, persistence_type="local"
+                dbc.Switch(
+                    id="light-switch",
+                    label="Dark",
+                    value=False,
                 ),
-                dbc.Label("(The number of categories selected by the user may or may not be the same as that displayed in the Bubble chorepleth chart)"),
+                html.Br(),
+                html.Br(),
                 html.Br(),
                 html.Br(),
 
@@ -133,9 +134,9 @@ def toggle_settings_menu(n, is_open):
     Input("dropdown-category-name", "value"),
     Input("dropdown-vendor-name", "value"),
     Input("radio-items-bubble-bar-value", "value"),
-    Input("input-bins-bubble-map", "value")]
+    Input("light-switch", "value")]
 )
-def update_bubble_map(start_date, end_date, county_dropdown, city_dropdown, category_dropdown, vendor_dropdown, radio_bubble_bar_value, bins_value):
+def update_scatter_mapbox(start_date, end_date, county_dropdown, city_dropdown, category_dropdown, vendor_dropdown, radio_bubble_bar_value, light_switch_value):
 
     # filter df by start and end dates selected
     final = df[(df['Date'] >= start_date) & (df['Date'] <= end_date)]
@@ -148,7 +149,18 @@ def update_bubble_map(start_date, end_date, county_dropdown, city_dropdown, cate
 
     transformed = final.groupby(['store_name', 'address', 'city', 'lat', 'lon'])[radio_bubble_bar_value].sum().reset_index(name='value')
 
-    random.seed(1)
+    fig = px.scatter_mapbox(transformed, lat="lat", lon="lon", size='value',
+                  size_max=20, zoom=5.8, height=450)
+    
+    fig.update_layout(margin=dict(l=0,r=0,b=0,t=30))
+
+    if (light_switch_value):
+        fig.update_layout(mapbox_style='dark')
+    
+    else:
+        fig.update_layout(mapbox_style='light')
+
+    '''random.seed(1)
 
     category_intervals = pd.cut(transformed['value'], bins=bins_value, right=False).unique().tolist()
     # remove the nan
@@ -196,7 +208,7 @@ def update_bubble_map(start_date, end_date, county_dropdown, city_dropdown, cate
                 landcolor = 'rgb(255, 255, 255)'
             ),
             margin=dict(l=0,r=0,b=0,t=30)
-        )
+        )'''
 
     return fig
 
@@ -273,3 +285,12 @@ def update_bar_chart(start_date, end_date, county_dropdown, city_dropdown, categ
         utils.data_bars(merged, 'Bottles sold', '#808080') +
         utils.data_bars(merged, 'Sale ($)', '#7261AC')
     )'''
+
+'''dbc.Label("Bin values into categories"),
+                dbc.Input(
+                    id="input-bins-bubble-map",
+                    type="number", min=0, max=20, step=1,
+                    value=9,
+                    persistence=True, persistence_type="local"
+                ),
+                dbc.Label("(The number of categories selected by the user may or may not be the same as that displayed in the Bubble chorepleth chart)"),'''

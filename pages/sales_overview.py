@@ -183,7 +183,8 @@ layout = html.Div([
             title="Settings",
             placement="end",
             id="settings-menu-overview",
-            is_open=False,            
+            is_open=False,
+            className="dbc"    
         )          
     ])
 ])

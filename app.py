@@ -2,7 +2,8 @@ import dash
 from dash import dcc, html
 import dash_bootstrap_components as dbc
 
-app = dash.Dash(__name__, use_pages=True, external_stylesheets=[dbc.themes.PULSE])
+dbc_css = "https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.min.css"
+app = dash.Dash(__name__, use_pages=True, external_stylesheets=[dbc.themes.PULSE, dbc_css])
 server = app.server
 
 sm_bar = dbc.Row(

@@ -34,21 +34,21 @@ dollars_heatmap_config = {
     "innerRadius": 200, 
     "outerRadius": 250, 
     "color": "Greens", 
-    #"tooltipContent":{"source": "block_id", "target":"Date", "targetEnd":"value"}
+    "tooltipContent":{"source": "block_id", "target":"Date", "targetEnd":"value"}
 }
 
 volume_heatmap_config = {
     "innerRadius": 140, 
     "outerRadius": 190, 
     "color": "Greys", 
-    #"tooltipContent":{"source": "block_id", "target":"Date", "targetEnd":"value"}
+    "tooltipContent":{"source": "block_id", "target":"Date", "targetEnd":"value"}
 }
 
 bottles_heatmap_config = {
     "innerRadius": 80, 
     "outerRadius": 130, 
     "color": "Purples", 
-    #"tooltipContent":{"source": "block_id", "target":"Date", "targetEnd":"value"}
+    "tooltipContent":{"source": "block_id", "target":"Date", "targetEnd":"value"}
 }
 
 holidays_config = {
@@ -57,11 +57,11 @@ holidays_config = {
     "thickness": 20,
     "color": "red",
     "strokeWidth": 0,
-    #"tooltipContent": {"source": "block_id", "target": "Date", "targetEnd": "holiday"}
+    "tooltipContent": {"source": "block_id", "target": "Date", "targetEnd": "holiday"}
 }
 
 layout = html.Div([
-    layout_helpers.get_subheader("btn-settings-overview"),   
+    layout_helpers.insights_get_subheader("btn-settings-overview"),   
     dbc.Tooltip(
         "Settings",
         target="btn-settings"

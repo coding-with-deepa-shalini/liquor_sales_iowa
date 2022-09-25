@@ -46,7 +46,7 @@ layout = html.Div([
                 html.Img(
                     src="assets/forecast.png", height="120px"
                 ),
-            ], className="me-5"),
+            ], href="/forecasting", className="me-5"),
         html.A([
                 html.Img(
                     src="assets/help.png", height="120px"

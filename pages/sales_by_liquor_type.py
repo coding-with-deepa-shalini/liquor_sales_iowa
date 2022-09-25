@@ -3,6 +3,7 @@ import dash
 import pandas as pd
 import plotly.express as px
 import dash_bootstrap_components as dbc
+from dash_bootstrap_templates import load_figure_template
 from dash import dcc, html, Input, Output, State, callback
 
 import utils
@@ -15,13 +16,15 @@ dash.register_page(
     name="Sales by Liquor Type"
 )
 
+load_figure_template("pulse")
+
 DATAPATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../data")
 
 raw_df = pd.read_csv(os.path.join(DATAPATH,"Iowa_liquor_sales_2021_minimal_with_type.csv"), index_col=False)
 df = data_transformation.transform_sales_data_by_store(raw_df)
 
 layout = html.Div([ 
-    layout_helpers.get_subheader("btn-settings-by-type"),   
+    layout_helpers.insights_get_subheader("btn-settings-by-type"),   
     dbc.Tooltip(
         "Settings",
         target="btn-settings-by-type"
@@ -138,11 +141,12 @@ def update_row1(start_date, end_date, county_dropdown, city_dropdown, category_d
     tree2 = final.groupby(['liquor_type', 'category_name'])['sale_dollars'].sum().round(2).reset_index(name='sale_dollars')
     treemap_df = pd.merge(tree1, tree2, on=['liquor_type', 'category_name'])
 
+    # color_continuous_scale="Aggrnyl"
     treemap = px.treemap(treemap_df, path=[px.Constant("Liquor type"), "liquor_type", "category_name"], 
-        values="bottles_sold", color="sale_dollars", color_continuous_scale="Aggrnyl")
+        values="bottles_sold", color="sale_dollars", template="pulse")
 
     sunburst_df = final.groupby(['liquor_type', 'vendor_name'])['bottles_sold'].sum().reset_index(name='bottles_sold')
-    sunburst = px.sunburst(sunburst_df, path=['liquor_type', 'vendor_name'], values='bottles_sold')
+    sunburst = px.sunburst(sunburst_df, path=['liquor_type', 'vendor_name'], values='bottles_sold', template="pulse")
 
     return treemap, sunburst
 
@@ -168,7 +172,7 @@ def update_row2(start_date, end_date, county_dropdown, city_dropdown, category_d
     final = utils.filter_df_by_dropdown_select(final, vendor_dropdown, "vendor_name")
 
     area_df = final.groupby(['liquor_type', radio_items_x])[radio_items_y].sum().round(2).reset_index(name=radio_items_y)
-    area = px.area(area_df, x=radio_items_x, y=radio_items_y, color='liquor_type', height=350)
+    area = px.area(area_df, x=radio_items_x, y=radio_items_y, color='liquor_type', height=350, template="pulse")
     area.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)', 'paper_bgcolor': 'rgba(0, 0, 0, 0)'},
                         margin=dict(l=0,r=0,b=0,t=0))
 

@@ -3,6 +3,7 @@ import dash
 import pandas as pd
 import plotly.express as px
 import dash_bootstrap_components as dbc
+from dash_bootstrap_templates import load_figure_template
 from dash import dcc, html, Input, Output, State, callback
 
 import utils
@@ -15,6 +16,8 @@ dash.register_page(
     name="Sales by Store"
 )
 
+load_figure_template("minty")
+
 DATAPATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../data")
 # set token to use Mapbox API
 px.set_mapbox_access_token(open(os.path.join(DATAPATH, ".mapbox_token")).read())
@@ -23,7 +26,7 @@ raw_df = pd.read_csv(os.path.join(DATAPATH,"Iowa_liquor_sales_2021_minimal_with_
 df = data_transformation.transform_sales_data_by_store(raw_df)
 
 layout = html.Div([ 
-    layout_helpers.get_subheader("btn-settings-by-store"),   
+    layout_helpers.insights_get_subheader("btn-settings-by-store"),   
     dbc.Tooltip(
         "Settings",
         target="btn-settings-by-store"
@@ -238,7 +241,7 @@ def update_bar_chart(start_date, end_date, county_dropdown, city_dropdown, categ
     bar_chart_df = final.groupby([radio_items_bar_chart_x])[radio_bubble_bar_value].sum().round(2).reset_index(name='value')
     bar_chart_df.sort_values(by=['value'], ascending=False, inplace=True)
 
-    fig = px.bar(bar_chart_df, x=radio_items_bar_chart_x, y='value', height=350)
+    fig = px.bar(bar_chart_df, x=radio_items_bar_chart_x, y='value', height=350, template="minty")
     fig.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)', 'paper_bgcolor': 'rgba(0, 0, 0, 0)'},
                         margin=dict(l=0,r=0,b=0,t=0))
 

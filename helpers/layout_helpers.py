@@ -210,6 +210,8 @@ filter_training_set_card = dbc.Card([
             persistence=True, persistence_type="local"
         ),
 
+        html.Br(),
+
         dcc.Dropdown(
             id="dropdown-vendor-name-forecasting",
             options=vendor_names,
@@ -217,21 +219,5 @@ filter_training_set_card = dbc.Card([
             multi=True,
             persistence=True, persistence_type="local"
         ),
-
-        dcc.Dropdown(
-            id="dropdown-city-name-forecasting",
-            options=cities,
-            placeholder="Select cities",
-            multi=True,
-            persistence=True, persistence_type="local"
-        ),
-
-        dcc.Dropdown(
-            id="dropdown-county-name-forecasting",
-            options=counties,
-            placeholder="Select counties",
-            multi=True,
-            persistence=True, persistence_type="local"
-        )
     ])
 ], color="secondary", outline=True, className="mt-2")

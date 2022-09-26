@@ -40,7 +40,7 @@ layout = html.Div([
 
         dbc.Col([ 
             dbc.Spinner(children=[dcc.Graph(id='prophet-output-components')], color='primary'),
-        ], width=7, className="ms-3"),
+        ], width=7, className="ms-5"),
 
         dbc.Col([ 
             html.Br(),
@@ -50,7 +50,7 @@ layout = html.Div([
                     dcc.Loading(children=[html.H1({}, id='kpi1-trends', className='card-title')], type='dot'),
                 ]),
                 dbc.CardFooter("MAPE")
-            ], color="secondary", outline=True),
+            ], color="secondary", outline=True, style={'width': '70%'}),
             html.Br(),
             html.Br(), 
             html.Br(),
@@ -60,7 +60,7 @@ layout = html.Div([
                     dcc.Loading(children=[html.H1({}, id='kpi2-trends', className='card-title')], type='dot'),
                 ]),
                 dbc.CardFooter("RMSE")
-            ], color="secondary", outline=True),
+            ], color="secondary", outline=True, style={'width': '70%'}),
             html.Br(),
             html.Br(), 
             html.Br(),
@@ -70,8 +70,8 @@ layout = html.Div([
                     dcc.Loading(children=[html.H1({}, id='kpi3-trends', className='card-title')], type='dot'),
                 ]),
                 dbc.CardFooter("Normalized RMSE")
-            ], color="secondary", outline=True)
-        ], width=2, className="ms-5 me-5")              
+            ], color="secondary", outline=True, style={'width': '70%'})
+        ], className="ms-5 me-5")              
     ])
 ])
 
@@ -87,21 +87,17 @@ layout = html.Div([
     Input("yearly-seasonality-switch", "value"),
     Input("holidays-switch", "value"),
     Input("dropdown-type-name-forecasting", "value"),
-    Input("dropdown-vendor-name-forecasting", "value"),
-    Input("dropdown-city-name-forecasting", "value"),
-    Input("dropdown-county-name-forecasting", "value")]
+    Input("dropdown-vendor-name-forecasting", "value")]
 )
-def update_dashboard(var_to_forecast, num_months_to_predict, conf_interval, weekly_seasonality, monthly_seasonality, yearly_seasonality, holidays, type_dropdown, vendor_dropdown, city_dropdown, county_dropdown):
+def update_dashboard(var_to_forecast, num_months_to_predict, conf_interval, weekly_seasonality, monthly_seasonality, yearly_seasonality, holidays, type_dropdown, vendor_dropdown):
 
     final = df
     # filter df by dropdown selections
     final = utils.filter_df_by_dropdown_select(final, type_dropdown, "liquor_type")
     final = utils.filter_df_by_dropdown_select(final, vendor_dropdown, "vendor_name")
-    final = utils.filter_df_by_dropdown_select(final, city_dropdown, "city")
-    final = utils.filter_df_by_dropdown_select(final, county_dropdown, "county")
 
-    final = final.groupby('Date')[var_to_forecast].sum().reset_index()
-    final.rename(columns={'Date': 'ds', var_to_forecast: 'y'}, inplace=True)
+    final_df = final.groupby('Date')[var_to_forecast].sum().reset_index()
+    final_df.rename(columns={'Date': 'ds', var_to_forecast: 'y'}, inplace=True)
 
     confidence_interval = conf_interval / 100
     model = Prophet(interval_width=confidence_interval, weekly_seasonality=weekly_seasonality, yearly_seasonality=yearly_seasonality, changepoint_prior_scale=0.1)
@@ -112,7 +108,7 @@ def update_dashboard(var_to_forecast, num_months_to_predict, conf_interval, week
     if (holidays):
         model.add_country_holidays(country_name='US')
 
-    model.fit(final)
+    model.fit(final_df)
 
     periods_to_predict = int(round(num_months_to_predict * 30.5))
     future = model.make_future_dataframe(periods=periods_to_predict, freq='D')
@@ -121,8 +117,8 @@ def update_dashboard(var_to_forecast, num_months_to_predict, conf_interval, week
     df_cv = cross_validation(model, initial='330 days', period='15 days', horizon = '30 days')
     df_p = performance_metrics(df_cv)
 
-    max_rmse = max(df_p['rmse'].tolist())
-    min_rmse = min(df_p['rmse'].tolist())
+    max_rmse = max(final[var_to_forecast].tolist())
+    min_rmse = min(final[var_to_forecast].tolist())
 
     mape = round(df_p['mape'].tolist()[-1], 2)
     rmse = round(df_p['rmse'].tolist()[-1], 2)

@@ -22,6 +22,23 @@ sm_bar = dbc.Row(
     align="center",
 )
 
+insights_dropdown = dbc.DropdownMenu([ 
+    dbc.DropdownMenuItem("Sales Overview", href='/sales-overview'),
+    dbc.DropdownMenuItem("Sales by Store", href='/sales-by-store'),
+    dbc.DropdownMenuItem("Sales by Liquor type", href='/sales-by-liquor-type')
+], label="Insights", className="ms-5")
+
+eda_dropdown = dbc.DropdownMenu([ 
+    dbc.DropdownMenuItem("Days of Week", href='/days-of-week'),
+    dbc.DropdownMenuItem("Bivariate Trends", href='/bivariate-trends'),
+    dbc.DropdownMenuItem("Prices", href='/prices')
+], label="Exploratory Analysis", className="ms-2")
+
+forecasting_dropdown = dbc.DropdownMenu([ 
+    dbc.DropdownMenuItem("Forecast", href='/forecast'),
+    dbc.DropdownMenuItem("Trends", href='/forecast-trends')
+], label="Forecasting", className="ms-2")
+
 navbar = dbc.Navbar(
     [
         dbc.Row(
@@ -35,11 +52,24 @@ navbar = dbc.Navbar(
                         target="_blank"
                     )
                 ]),
+
                 dbc.Col([ 
                     html.A([
                         html.Img(src="assets/home-icon.svg", height="30px"),                        
                     ], href="/")
-                ])        
+                ]),
+
+                dbc.Col([ 
+                    insights_dropdown
+                ]),
+
+                dbc.Col([ 
+                    eda_dropdown
+                ]),
+
+                dbc.Col([ 
+                    forecasting_dropdown
+                ])          
             ],
             align="center",
             className="ms-1"

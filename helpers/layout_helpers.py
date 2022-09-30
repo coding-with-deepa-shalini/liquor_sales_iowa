@@ -63,7 +63,47 @@ def insights_get_subheader(settings_btn_id):
 
     return insights_subheader
 
-def forecasting_get_subheader():
+def eda_get_subheader(info_btn_id):
+    eda_subheader = dbc.Row([ 
+        dbc.Col([], width=1),
+        dbc.Col([
+            html.Div(
+                dcc.Link(
+                    "Days of Week",
+                    href="/days-of-week",
+                    style={'font-size': "21px"}
+                )
+            ),
+            html.Div(
+                dcc.Link(
+                    "Bivariate Trends",
+                    href="/bivariate-trends",
+                    style={'font-size': "21px"}
+                )
+            ),
+            html.Div(
+                dcc.Link(
+                    "Prices",
+                    href='/prices',
+                    style={'font-size': "21px"}
+                )
+            )
+            ], width=5, className="d-flex align-content-center flex-wrap justify-content-evenly"),
+
+            dbc.Col([
+                html.A(
+                    html.Img(id=info_btn_id,
+                        src="assets/information-icon.svg", height="45px"
+                    )
+                )
+            ], width=5, className="d-flex justify-content-end"),
+            dbc.Col([], width=1)
+        ], className="bg-secondary"
+    )
+
+    return eda_subheader
+
+def forecasting_get_subheader(info_btn_id):
     forecasting_subheader = dbc.Row([
         dbc.Col([], width=1),
         dbc.Col([
@@ -76,19 +116,28 @@ def forecasting_get_subheader():
             ),
             html.Div(
                 dcc.Link(
-                    "Trends",
-                    href="/trends",
+                    "Forecast Trends",
+                    href="/forecast-trends",
                     style={'font-size': "21px"}
                 )
             ),
             ], width=5, className="d-flex align-content-center flex-wrap justify-content-evenly"),
+
+            dbc.Col([
+                html.A(
+                    html.Img(id=info_btn_id,
+                        src="assets/information-icon.svg", height="45px"
+                    )
+                )
+            ], width=5, className="d-flex justify-content-end"),
+            dbc.Col([], width=1)
         ], 
         className="bg-secondary"
     )
 
     return forecasting_subheader
 
-# Common settings
+# Common Insights settings
 date_picker_range = dcc.DatePickerRange(
                 id="date-picker-range",
                 start_date = start_date,
@@ -130,6 +179,44 @@ vendor_dropdown = dcc.Dropdown(
                 persistence=True, persistence_type="local"
             )
 
+def get_alert(alert_id):
+    insights_alert = dbc.Alert(
+                "Option selected is not relevant due to the other filter selections",
+                id=alert_id,
+                is_open=False,
+                color='danger'
+            )
+
+    return insights_alert
+
+def get_positioned_alert(alert_id):
+    pos_alert = dbc.Alert(
+                "Option selected is not relevant due to the other filter selections",
+                id=alert_id,
+                is_open=False,
+                color='danger',
+                style={"position": "fixed", "top": 70, "right": 10, "width": 350},
+            )
+
+    return pos_alert
+
+# Common components for EDA
+def radio_items_for_y_axis(radio_items_id):    
+    radio_items = dbc.RadioItems(
+                            options=[
+                                {"label": "Bottles sold", "value": "bottles_sold"},
+                                {"label": "Sale (in dollars)", "value": "sale_dollars"},
+                                {"label": "Volume sold (in litres)", "value": "volume_sold_liters"},
+                                {"label": "State bottle cost", "value": "state_bottle_cost"},
+                                {"label": "State bottle retail", "value": "state_bottle_retail"}
+                            ],
+                            value='state_bottle_cost',
+                            id=radio_items_id,
+                            persistence=True, persistence_type="local"
+                        )
+    
+    return radio_items
+
 # Common cards/parameters for Forecasting
 model_parameters_card = dbc.Card([ 
                             dbc.CardHeader(html.H5("Parameters to tune model", className="card-title")),
@@ -139,7 +226,7 @@ model_parameters_card = dbc.Card([
                                 dbc.RadioItems(
                                     options=[
                                         {"label": "Bottle sold", "value": "bottles_sold"},
-                                        {"label": "Volume sold in litres", "value": "volume_sold_liters"}
+                                        {"label": "Volume sold (in litres)", "value": "volume_sold_liters"}
                                     ],
                                     value="bottles_sold",
                                     id='radio-items-var-forecast',

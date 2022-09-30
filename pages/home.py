@@ -11,6 +11,7 @@ dash.register_page(
 )
 
 options = dict(loop=True, autoplay=True) #rendererSettings=dict(preserveAspectRatio='xMidYmid slice'
+tooltip_placement = "bottom"
 
 layout = html.Div([
     dbc.Row([      
@@ -36,21 +37,26 @@ layout = html.Div([
                 html.Img(
                     src="assets/insights.png", height="120px"                   
                 ),
-            ], href="/insights", className="me-5"),
+            ], href="/insights", className="me-5", id="insights-link-home"),
         html.A([
                 html.Img(
                     src="assets/eda.png", height="120px"
                 ),
-            ], className="me-5"),
+            ], href="/exploratory-analysis", className="me-5", id="eda-link-home"),
         html.A([
                 html.Img(
                     src="assets/forecast.png", height="120px"
                 ),
-            ], href="/forecasting", className="me-5"),
+            ], href="/forecasting", className="me-5", id="forecasting-link-home"),
         html.A([
                 html.Img(
                     src="assets/help.png", height="120px"
                 ),
-            ]),
+            ], id="help-link-home"),
     ], className="d-flex justify-content-center"),
+
+    dbc.Tooltip("Insights", target="insights-link-home", placement=tooltip_placement),
+    dbc.Tooltip("Exploratory Analysis", target="eda-link-home", placement=tooltip_placement),
+    dbc.Tooltip("Forecasting", target="forecasting-link-home", placement=tooltip_placement),
+    dbc.Tooltip("Documentation", target="help-link-home", placement=tooltip_placement)
 ])

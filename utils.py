@@ -1,5 +1,12 @@
 import json
 import pandas as pd
+from math import log, floor
+
+def format_large_numbers(number):
+    units = ['', 'K', 'M', 'G', 'T', 'P']
+    k = 1000.0
+    magnitude = int(floor(log(number, k)))
+    return '%.2f%s' % (number / k**magnitude, units[magnitude])
 
 def write_readable_json(df: pd) -> list():
     return json.loads(df.astype(str).to_json(orient='records', date_format="iso")) 

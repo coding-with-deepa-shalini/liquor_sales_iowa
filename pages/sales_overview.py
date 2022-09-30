@@ -1,3 +1,4 @@
+from operator import is_
 import os
 import dash
 import pandas as pd
@@ -64,7 +65,7 @@ layout = html.Div([
     layout_helpers.insights_get_subheader("btn-settings-overview"),   
     dbc.Tooltip(
         "Settings",
-        target="btn-settings"
+        target="btn-settings-overview"
     ),
 
     dbc.Row([
@@ -177,15 +178,18 @@ layout = html.Div([
             
             html.Br(),
             
-            layout_helpers.vendor_dropdown
-            ],
+            layout_helpers.vendor_dropdown,
+
+            html.Br(),
+
+            layout_helpers.get_alert("insights-overview-alert")],            
 
             title="Settings",
             placement="end",
             id="settings-menu-overview",
             is_open=False,
             className="dbc"    
-        )          
+        ),              
     ])
 ])
 
@@ -206,7 +210,8 @@ def toggle_settings_menu(n, is_open):
     Output("kpi-units-sold", "children"),
     Output("data-table-overview", "data"),
     Output("data-table-overview", "columns"),
-    Output("data-table-overview", "style_data_conditional")],
+    Output("data-table-overview", "style_data_conditional"),
+    Output("insights-overview-alert", "is_open")],
     [Input("date-picker-range", "start_date"),
     Input("date-picker-range", "end_date"),
     Input("dropdown-county", "value"),
@@ -224,6 +229,9 @@ def update_dashboard(start_date, end_date, county_dropdown, city_dropdown, categ
     final = utils.filter_df_by_dropdown_select(final, city_dropdown, "city")
     final = utils.filter_df_by_dropdown_select(final, category_dropdown, "category_name")
     final = utils.filter_df_by_dropdown_select(final, vendor_dropdown, "vendor_name")
+
+    if (len(final.index) == 0):
+        return dash.no_update, dash.no_update, dash.no_update, dash.no_update, dash.no_update, dash.no_update, dash.no_update, dash.no_update, True
 
     # write json file and read it into a variable which will be used for Calendar Circos
     circos_helpers.write_circos_json(final)
@@ -260,9 +268,9 @@ def update_dashboard(start_date, end_date, county_dropdown, city_dropdown, categ
             ]
 
     # KPI returns
-    kpi1 = str(final.shape[0])
-    kpi2 = final['sale_dollars'].sum().round(2).astype(str)
-    kpi3 = final['bottles_sold'].sum().astype(str)
+    kpi1 = utils.format_large_numbers(final.shape[0]) 
+    kpi2 = utils.format_large_numbers(final['sale_dollars'].sum().round(2)) 
+    kpi3 = utils.format_large_numbers(final['bottles_sold'].sum()) 
 
     # transform df for data table
     transformed1 = final.groupby(['category_name'])['sale_dollars'].sum().round(2).reset_index(name='value')
@@ -281,8 +289,8 @@ def update_dashboard(start_date, end_date, county_dropdown, city_dropdown, categ
     columns=[{"name": i, "id": i} for i in merged.columns]
 
     style_data_table_conditional = (
-        utils.data_bars(merged, 'Bottles sold', '#808080') +
-        utils.data_bars(merged, 'Sale ($)', '#7261AC')
+        utils.data_bars(merged, 'Bottles sold', '#A5A2CD') +
+        utils.data_bars(merged, 'Sale ($)', '#ADDEA7')
     )
     
-    return layout, tracks, kpi1, kpi2, kpi3, data, columns, style_data_table_conditional
+    return layout, tracks, kpi1, kpi2, kpi3, data, columns, style_data_table_conditional, False

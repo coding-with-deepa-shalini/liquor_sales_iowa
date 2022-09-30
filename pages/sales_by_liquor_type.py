@@ -42,37 +42,42 @@ layout = html.Div([
 
         dbc.Row([ 
             dbc.Col([
-                dbc.Label("X-axis"),
-                dbc.RadioItems(
-                    id="radio-items-x-axis",
-                    options=[
-                        {'label': 'By day', 'value': 'Date'},
-                        {'label': 'By week', 'value': 'week_start_date'},
-                        {'label': 'By month', 'value': 'year_month'}
-                    ],
-                    value='week_start_date',
-                    labelStyle={'display': 'block'},
-                    inputCheckedClassName="border border-success bg-success",
-                    persistence=True, persistence_type="local"
-                ),
-                html.Hr(),
-                dbc.Label("Y-axis"),
-                dbc.RadioItems(
-                    id="radio-items-y-axis",
-                    options=[
-                        {'label': 'Bottles sold', 'value': 'bottles_sold'},
-                        {'label': 'Sale ($)', 'value': 'sale_dollars'},
-                        {'label': 'Volume sold (in litres)', 'value': 'volume_sold_liters'}
-                    ],
-                    value='bottles_sold',
-                    labelStyle={'display': 'block'},
-                    inputCheckedClassName="border border-success bg-success",
-                    persistence=True, persistence_type="local"
-                ),
-            ], width=2, className="ms-5"),
+
+                dbc.Card(
+                    dbc.CardBody([ 
+                        html.H6("X-axis", className="card-title"),
+                        dbc.RadioItems(
+                            id="radio-items-x-axis",
+                            options=[
+                                {'label': 'By day', 'value': 'Date'},
+                                {'label': 'By week', 'value': 'week_start_date'},
+                                {'label': 'By month', 'value': 'year_month'}
+                            ],
+                            value='week_start_date',
+                            labelStyle={'display': 'block'},
+                            inputCheckedClassName="border border-success bg-success",
+                            persistence=True, persistence_type="local"
+                        ),
+                        html.Hr(),
+                        html.H6("Y-axis", className="card-title"),
+                        dbc.RadioItems(
+                            id="radio-items-y-axis",
+                            options=[
+                                {'label': 'Bottles sold', 'value': 'bottles_sold'},
+                                {'label': 'Sale ($)', 'value': 'sale_dollars'},
+                                {'label': 'Volume sold (in litres)', 'value': 'volume_sold_liters'}
+                            ],
+                            value='bottles_sold',
+                            labelStyle={'display': 'block'},
+                            inputCheckedClassName="border border-success bg-success",
+                            persistence=True, persistence_type="local"
+                        )
+                    ])
+                )                
+            ], width=2, className="ms-3"),
             dbc.Col([ 
                 dbc.Spinner([dcc.Graph(id="area-by-type")], color="primary")
-            ], width=9)
+            ], width=9, className="ms-3")
         ])
     ]),
 
@@ -96,7 +101,11 @@ layout = html.Div([
             
         html.Br(),
             
-        layout_helpers.vendor_dropdown
+        layout_helpers.vendor_dropdown,
+
+        html.Br(),
+
+        layout_helpers.get_alert("insights-type-alert")
         ],
 
         title="Settings",
@@ -118,7 +127,8 @@ def toggle_settings_menu(n, is_open):
     return is_open
 
 @callback([Output("treemap-by-type", "figure"),
-    Output("sunburst-by-type", "figure")],
+    Output("sunburst-by-type", "figure"),
+    Output("insights-type-alert", "is_open")],
     [Input("date-picker-range", "start_date"),
     Input("date-picker-range", "end_date"),
     Input("dropdown-county", "value"),
@@ -137,6 +147,9 @@ def update_row1(start_date, end_date, county_dropdown, city_dropdown, category_d
     final = utils.filter_df_by_dropdown_select(final, category_dropdown, "category_name")
     final = utils.filter_df_by_dropdown_select(final, vendor_dropdown, "vendor_name")
 
+    if (len(final) == 0):
+        return dash.no_update, dash.no_update, True
+
     tree1 = final.groupby(['liquor_type', 'category_name'])['bottles_sold'].sum().reset_index(name='bottles_sold')
     tree2 = final.groupby(['liquor_type', 'category_name'])['sale_dollars'].sum().round(2).reset_index(name='sale_dollars')
     treemap_df = pd.merge(tree1, tree2, on=['liquor_type', 'category_name'])
@@ -146,9 +159,9 @@ def update_row1(start_date, end_date, county_dropdown, city_dropdown, category_d
         values="bottles_sold", color="sale_dollars", template="pulse")
 
     sunburst_df = final.groupby(['liquor_type', 'vendor_name'])['bottles_sold'].sum().reset_index(name='bottles_sold')
-    sunburst = px.sunburst(sunburst_df, path=['liquor_type', 'vendor_name'], values='bottles_sold', template="pulse")
+    sunburst = px.sunburst(sunburst_df, path=['liquor_type', 'vendor_name'], values='bottles_sold', template="minty")
 
-    return treemap, sunburst
+    return treemap, sunburst, False
 
 @callback(Output("area-by-type", "figure"),
     [Input("date-picker-range", "start_date"),
@@ -171,8 +184,11 @@ def update_row2(start_date, end_date, county_dropdown, city_dropdown, category_d
     final = utils.filter_df_by_dropdown_select(final, category_dropdown, "category_name")
     final = utils.filter_df_by_dropdown_select(final, vendor_dropdown, "vendor_name")
 
+    if (len(final.index) == 0):
+        return dash.no_update
+
     area_df = final.groupby(['liquor_type', radio_items_x])[radio_items_y].sum().round(2).reset_index(name=radio_items_y)
-    area = px.area(area_df, x=radio_items_x, y=radio_items_y, color='liquor_type', height=350, template="pulse")
+    area = px.area(area_df, x=radio_items_x, y=radio_items_y, color='liquor_type', height=350, color_discrete_sequence=px.colors.qualitative.Bold)
     area.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)', 'paper_bgcolor': 'rgba(0, 0, 0, 0)'},
                         margin=dict(l=0,r=0,b=0,t=0))
 

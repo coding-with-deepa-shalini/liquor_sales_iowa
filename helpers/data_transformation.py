@@ -30,3 +30,17 @@ def transform_sales_data_by_store(df):
     transformed['lon'] = transformed['store_location'].str.split(' ').str.get(1).str.replace('(', '').astype(float)
 
     return transformed
+
+def transform_sales_data_forecasting(df):
+    df['Date'] = pd.to_datetime(df['date'], format='%m/%d/%Y')
+    df.sort_values(['Date'], inplace=True)
+
+    return df
+
+def transform_sales_data_eda(df):
+    transformed = transform_sales_data_forecasting(df)
+    transformed['weekday'] = (transformed['Date']).dt.day_name()
+    transformed['year_month'] = (transformed['Date']).dt.year.astype(str) + '-' + (transformed['Date']).dt.month.astype(str)
+
+    return transformed
+

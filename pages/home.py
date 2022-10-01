@@ -52,11 +52,11 @@ layout = html.Div([
                 html.Img(
                     src="assets/help.png", height="120px"
                 ),
-            ], id="help-link-home"),
+            ], href="/summary", id="help-link-home"),
     ], className="d-flex justify-content-center"),
 
     dbc.Tooltip("Insights", target="insights-link-home", placement=tooltip_placement),
     dbc.Tooltip("Exploratory Analysis", target="eda-link-home", placement=tooltip_placement),
     dbc.Tooltip("Forecasting", target="forecasting-link-home", placement=tooltip_placement),
-    dbc.Tooltip("Documentation", target="help-link-home", placement=tooltip_placement)
+    dbc.Tooltip("Summary", target="help-link-home", placement=tooltip_placement)
 ])

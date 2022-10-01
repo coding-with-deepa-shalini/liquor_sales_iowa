@@ -1,0 +1,11 @@
+dash==2.6.1
+dash_bio==1.0.2
+dash_bootstrap_components==1.2.1
+dash_bootstrap_templates==1.0.7
+dash_extensions==0.1.6
+fbprophet==0.7.1
+pandas==1.5.0
+plotly==5.10.0
+python_dateutil==2.8.2
+gunicorn
+dash-tools

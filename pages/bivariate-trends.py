@@ -18,7 +18,7 @@ dash.register_page(
 
 load_figure_template("pulse")
 
-DATAPATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../data")
+DATAPATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../data")
 
 df = pd.read_csv(os.path.join(DATAPATH,"Iowa_liquor_sales_2021_minimal_with_type.csv"), index_col=False)
 

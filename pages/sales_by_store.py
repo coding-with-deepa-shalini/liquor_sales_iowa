@@ -18,7 +18,7 @@ dash.register_page(
 
 load_figure_template("minty")
 
-DATAPATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../data")
+DATAPATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../data")
 # set token to use Mapbox API
 px.set_mapbox_access_token(open(os.path.join(DATAPATH, ".mapbox_token")).read())
 

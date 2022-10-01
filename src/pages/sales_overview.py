@@ -1,4 +1,3 @@
-from operator import is_
 import os
 import dash
 import pandas as pd
@@ -16,7 +15,7 @@ dash.register_page(
     name="Sales Overview"
 )
 
-DATAPATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../data")
+DATAPATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../data")
 
 raw_df = pd.read_csv(os.path.join(DATAPATH,"Iowa_liquor_sales_2021_minimal_with_type.csv"), index_col=False)
 df = data_transformation.transform_sales_data_overview(raw_df)

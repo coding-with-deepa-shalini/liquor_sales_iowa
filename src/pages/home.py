@@ -7,7 +7,9 @@ dash.register_page(
     __name__,
     path='/',
     title="Iowa Liquor Sales",
-    name="Home"
+    name="Home",
+    image="metatag-image.png",
+    description="Dash app developed for the Dash Autumn Challenge. The Iowa liquor sales data was used."
 )
 
 options = dict(loop=True, autoplay=True) #rendererSettings=dict(preserveAspectRatio='xMidYmid slice'

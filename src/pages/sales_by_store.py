@@ -18,12 +18,15 @@ dash.register_page(
 
 load_figure_template("minty")
 
-DATAPATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../data")
+DATAPATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../data")
 # set token to use Mapbox API
 px.set_mapbox_access_token(open(os.path.join(DATAPATH, ".mapbox_token")).read())
 
 raw_df = pd.read_csv(os.path.join(DATAPATH,"Iowa_liquor_sales_2021_minimal_with_type.csv"), index_col=False)
 df = data_transformation.transform_sales_data_by_store(raw_df)
+
+# title for bar chart
+y_axis_dict = {'bottles_sold': 'Bottles sold', 'sale_dollars': 'Sales (in dollars)', 'volume_sold_liters': 'Volume sold (in litres)'}
 
 layout = html.Div([ 
     layout_helpers.insights_get_subheader("btn-settings-by-store"),   
@@ -302,8 +305,8 @@ def update_bar_chart(start_date, end_date, county_dropdown, city_dropdown, categ
     bar_chart_df = final.groupby([radio_items_bar_chart_x])[radio_bar_value].sum().round(2).reset_index(name='value')
     bar_chart_df.sort_values(by=['value'], ascending=False, inplace=True)
 
-    fig = px.bar(bar_chart_df, x=radio_items_bar_chart_x, y='value', height=350, template="minty")
+    fig = px.bar(bar_chart_df, x=radio_items_bar_chart_x, y='value', height=350, template="minty", title=y_axis_dict[radio_bar_value] + " by " + radio_items_bar_chart_x)
     fig.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)', 'paper_bgcolor': 'rgba(0, 0, 0, 0)'},
-                        margin=dict(l=0,r=0,b=0,t=0))
+                        margin=dict(l=0,r=0,b=0))
 
     return fig

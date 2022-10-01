@@ -18,10 +18,14 @@ dash.register_page(
 
 load_figure_template("pulse")
 
-DATAPATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../data")
+DATAPATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../data")
 
 raw_df = pd.read_csv(os.path.join(DATAPATH,"Iowa_liquor_sales_2021_minimal_with_type.csv"), index_col=False)
 df = data_transformation.transform_sales_data_by_store(raw_df)
+
+# title for bar chart
+x_axis_dict = {'Date': 'date', 'week_start_date': 'week', 'year_month': 'month'}
+y_axis_dict = {'bottles_sold': 'Bottles sold', 'sale_dollars': 'Sales (in dollars)', 'volume_sold_liters': 'Volume sold (in litres)'}
 
 layout = html.Div([ 
     layout_helpers.insights_get_subheader("btn-settings-by-type"),   
@@ -76,7 +80,7 @@ layout = html.Div([
                 )                
             ], width=2, className="ms-3"),
             dbc.Col([ 
-                dbc.Spinner([dcc.Graph(id="area-by-type")], color="primary")
+                dcc.Loading([dcc.Graph(id="area-by-type")], type='graph')
             ], width=9, className="ms-3")
         ])
     ]),
@@ -156,10 +160,10 @@ def update_row1(start_date, end_date, county_dropdown, city_dropdown, category_d
 
     # color_continuous_scale="Aggrnyl"
     treemap = px.treemap(treemap_df, path=[px.Constant("Liquor type"), "liquor_type", "category_name"], 
-        values="bottles_sold", color="sale_dollars", template="pulse")
+        values="bottles_sold", color="sale_dollars", template="pulse", title="Liquor type -> Category names")
 
     sunburst_df = final.groupby(['liquor_type', 'vendor_name'])['bottles_sold'].sum().reset_index(name='bottles_sold')
-    sunburst = px.sunburst(sunburst_df, path=['liquor_type', 'vendor_name'], values='bottles_sold', template="minty")
+    sunburst = px.sunburst(sunburst_df, path=['liquor_type', 'vendor_name'], values='bottles_sold', template="minty", title="Liquor type -> Vendor names")
 
     return treemap, sunburst, False
 
@@ -188,8 +192,9 @@ def update_row2(start_date, end_date, county_dropdown, city_dropdown, category_d
         return dash.no_update
 
     area_df = final.groupby(['liquor_type', radio_items_x])[radio_items_y].sum().round(2).reset_index(name=radio_items_y)
-    area = px.area(area_df, x=radio_items_x, y=radio_items_y, color='liquor_type', height=350, color_discrete_sequence=px.colors.qualitative.Bold)
+    area = px.area(area_df, x=radio_items_x, y=radio_items_y, color='liquor_type', height=350, color_discrete_sequence=px.colors.qualitative.Bold, 
+        title=y_axis_dict[radio_items_y] + " by " + x_axis_dict[radio_items_x])
     area.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)', 'paper_bgcolor': 'rgba(0, 0, 0, 0)'},
-                        margin=dict(l=0,r=0,b=0,t=0))
+                        margin=dict(l=0,r=0,b=0))
 
     return area

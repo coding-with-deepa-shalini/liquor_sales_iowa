@@ -4,7 +4,7 @@ import json
 import utils
 import pandas as pd
 
-DATAPATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../data")    
+DATAPATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../data")    
 
 def Decoder(json_obj):
     rv = {}

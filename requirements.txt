@@ -27,7 +27,7 @@ dash-table==5.0.0
 EditorConfig==0.12.3
 ephem==4.1.3
 fbprophet==0.7.1
-Flask==2.2.2
+Flask
 Flask-Caching==2.0.0
 Flask-Compress==1.13
 fonttools==4.37.4

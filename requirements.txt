@@ -32,6 +32,7 @@ Flask-Caching==2.0.0
 Flask-Compress @ file:///home/conda/feedstock_root/build_artifacts/flask-compress_1663772969809/work
 fonttools @ file:///D:/bld/fonttools_1664574385130/work
 GEOparse @ file:///home/conda/feedstock_root/build_artifacts/geoparse_1638557960522/work
+gunicorn==20.1.0
 hijri-converter @ file:///home/conda/feedstock_root/build_artifacts/hijri-converter_1653348285237/work
 holidays @ file:///home/conda/feedstock_root/build_artifacts/holidays_1663340966408/work
 idna @ file:///home/conda/feedstock_root/build_artifacts/idna_1663625384323/work

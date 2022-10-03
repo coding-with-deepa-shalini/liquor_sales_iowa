@@ -5,7 +5,7 @@ Steps to install and run the app
 1. pip install -r requirements.txt
 2. If the above gives any errors, and does not install all the packages, please execute the following:
 
-    Create a conda virtual environment (python 3.8) and clone the repo into it
+    Create a conda virtual environment (python 3.8), while in the environment, follow:
 
     conda install -c conda-forge pandas
     conda install -c conda-forge plotly

@@ -35,7 +35,7 @@ layout = dbc.Container(
             dcc.Markdown('''
             The app can be improved in many ways to provide better data-driven insights and forecast to help the liquor industry. 
 
-            * The 'Insights' section can have a choropleth map with the amount of liquor sold to Iowa by ocunty.
+            * The 'Insights' section can have a choropleth map with the amount of liquor sold to Iowa by countyy.
 
             * The 'Exploratiory Analysis' section can have a page dedicated to clustering or anomaly detection.
 
